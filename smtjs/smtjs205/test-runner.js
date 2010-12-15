@@ -1,0 +1,6 @@
+import "include-all.js"
+////////////////////////////////////////////////////
+var sb=new StringBuilder();
+sb.appendFormat("Time of now is {$0:yyyy-MM-dd hh:mm:ss}.",new Date());
+echo(sb)
+////////////////////////////////////////////////////

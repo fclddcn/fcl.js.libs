@@ -1,0 +1,85 @@
+
+html,body{height:100%;margin:0px}
+
+body,html{
+		margin:0;
+		padding:0;
+		height:100%;
+		width:100%;
+		/*background-image:url(about:blank);*/
+		/*background-attachment:fixed;*/
+}
+
+.delete{text-decoration:line-through;}
+
+div.dialog-cover{
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:100%;
+		height:100%;
+		background-color:#000;
+		margin:atuo;
+		/* ff */
+		-Moz-Opacity:0.3;
+		Opacity:0.3; /*3.5 later*/
+		/* ie */
+		filter:alpha(opacity=30);
+		/*IE7*/
+		*position:fixed !important;
+		/* *top:0 !important; */
+		/*IE6*/
+		*height:expression(eval("document.documentElement.scrollHeight"));
+		*width:expression(eval(document.documentElement.scrollWidth));
+		*position:absolute;
+		z-index:90000;
+}
+/* /\* dialog  *\/ */
+div.dialog{
+		overflow:hidden;
+		position:fixed;
+		width:100%;
+		margin:atuo;
+		margin-top:200px;
+		text-align:center;
+		z-index:90003;
+		/*IE*/
+		zoom: 1;	/*needed in IE up to version 7,
+								or set width or height to trigger "hasLayout" */
+		/*IE7*/
+		*position:fixed !important;
+		/* *top:0 !important; */
+		/*IE6*/
+		*margin-top:expression(eval(document.documentElement.scrollTop)+200);
+		*position:absolute;
+}
+#jSuggestContainer {
+		position:absolute;
+		font: 12px Tahoma;
+		border:1px solid #ffb931;
+		border-top:0;
+		background:#FFF;
+}
+.jSuggestLoading {
+		font-style:italic;
+		padding: 10px;
+}
+#jSuggestContainer ul, #jSuggestContainer ul li{
+		margin: 0;
+		padding:0;
+		list-style:none;
+}
+#jSuggestContainer ul li{
+		padding: 2px 4px;
+		border-bottom: 1px dotted #ffe594;
+		color:#666;
+		background:#fff9e7;
+		cursor:pointer
+}
+#jSuggestContainer ul li.last{
+		border-bottom: 0;
+}
+#jSuggestContainer ul li.jSuggestHover{
+		background:#ffeaaa;
+		color:#333;
+}

@@ -1,0 +1,76 @@
+<customactions>
+   <actionspanel>
+     <!-- RegExp and Regular Expression objects -->
+     <folder name="Objects" id="Objects" sort="false" tiptext="Predefined objects provided by ActionScript" helpid="2432" version="4" >
+       <folder name="Core" id="Core" tiptext="Core objects of ActionScript language" helpid="2732" version="5">
+         <folder name="RegExp" id="RegExp" tiptext="Object for advanced string manipulation">
+           <string name="new RegExp" tiptext="Creates a new Regular Expression object" object="RegExp"
+             text="new RegExp(%%)"
+             text2="new RegExp(% pattern %)"
+             text3="new RegExp(% pattern, flags %)"
+             version="5" />
+           <folder name="Properties" id="Properties" sort="false" tiptext="Properties of the RegExp object" version="5">
+	     <string name="lastMatch" tiptext="The last matching string" object="RegExp" text=".lastMatch" version="5" />
+	     <string name="lastParen" tiptext="Last matching parenthesized subcomponent" object="RegExp" text=".lastParen" version="5" />
+             <string name="leftContext" tiptext="String to the left from last match" object="RegExp" text=".leftContext" version="5" />
+             <string name="rightContext" tiptext="String to the right from last match" object="RegExp" text=".rightContext" version="5" />
+             <string name="$1, ... $9" tiptext="The n-th parenthesized subcomponent" object="RegExp" text=".$%n%" version="5" />
+           </folder>
+           <folder name="Regular Expression" id="RegularExpression" tiptext="Regular Expression object">
+             <folder name="Methods" id="Methods" tiptext="Methods of Regular Expression objects" version="5">
+               <string name="compile" tiptext="Compiles a regular expression from pattern string and modifier flags" object="RegularExpression" text=".compile(% pattern, flags %)" version="5" />
+               <string name="exec" tiptext="Return an array of matching items or null" object="RegularExpression" text=".exec(% string %)" version="5" />
+               <string name="test" tiptext="Test if the a regular expression has a match in a string" object="RegularExpression" text=".test(% string %)" version="5" />
+             </folder>
+             <folder name="Properties" id="Properties" tiptext="Properties of Regular Expression objects" version="5">
+               <string name="global" tiptext="Search expression over whole string" object="RegularExpression" text=".global" version="5" />
+               <string name="ignoreCase" tiptext="Ignore case when searching" object="RegularExpression" text=".ignoreCase" version="5" />
+               <string name="lastIndex" tiptext="Index counter of the search string" object="RegularExpression" text=".lastIndex" version="5" />
+               <string name="multiline" tiptext="Search expression over a multiline string" object="RegularExpression" text=".global" version="5" />
+               <string name="source" tiptext="String source of a regular expression" object="RegularExpression" text=".source" version="5" />
+             </folder>
+           </folder>
+         </folder>
+         <folder name="String" id="String" sort="false" index="true" tiptext="Object that helps you work with strings" helpid="2505" version="5">
+	   <folder name="Methods" id="Methods" tiptext="Methods of String objects" helpid="2704" version="5">
+             <string name="match" tiptext="" object="Return an array of matching items or null" text=".match(% regExpression %)" version="5" />
+             <string name="replace" tiptext="Search string for matchin pattern and replace with specified text" object="String" text=".replace(% regExpression, replaceString %)" version="5" />
+             <string name="search" tiptext="Search string for matching pattern, return index or -1" object="String" text=".search(% regExpression %)" version="5" />
+           </folder>
+         </folder>
+       </folder>
+     </folder>
+   </actionspanel>
+   <colorsyntax>
+      <identifier text="RegExp"/>
+      <identifier text="RegExp.lastMatch"/>
+      <identifier text="RegExp.lastParen"/>
+      <identifier text="RegExp.leftContext"/>
+      <identifier text="RegExp.rightContext"/>
+      <identifier text="RegExp.compile"/>
+      <identifier text="RegExp.source"/>
+      <identifier text="RegExp.$1"/>
+      <identifier text="RegExp.$2"/>
+      <identifier text="RegExp.$3"/>
+      <identifier text="RegExp.$4"/>
+      <identifier text="RegExp.$5"/>
+      <identifier text="RegExp.$6"/>
+      <identifier text="RegExp.$7"/>
+      <identifier text="RegExp.$8"/>
+      <identifier text="RegExp.$9"/>
+      <identifier text=".compile"/>
+      <identifier text=".exec"/>
+      <identifier text=".test"/>
+      <identifier text=".global"/>
+      <identifier text=".ignoreCase"/>
+      <identifier text=".lastIndex"/>
+      <identifier text=".source"/>
+      <identifier text=".match"/>
+      <identifier text=".replace"/>
+      <identifier text=".search"/>
+   </colorsyntax>
+   <codehints>
+      <typeinfo pattern="*_re" object="RegularExpression"/>
+      <typeinfo pattern="RegExp" object="RegExp"/>
+   </codehints>
+</customactions>

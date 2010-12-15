@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Regular Expression class for Flash5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1257">
+</head>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!--
+temp  = '<SCRIPT LANGUAGE="VBScript"\> \n'
+temp += '<!--\n'
+temp += 'Sub mov_FSCommand(ByVal cmd, ByVal arg) \n'
+temp += 'call mov_DoFSCommand(cmd, arg) \n'
+temp += 'end sub \n'
+temp += '--'+'>\n'
+temp += '</SCRIPT\> \n'
+document.write(temp)
+
+var m;
+var waitForOK = true;
+var InternetExplorer = navigator.appName.indexOf("Microsoft") != -1;
+var old_e;
+var old_f;
+var re;
+
+function InitObjects(){
+	m = InternetExplorer ? mov : document.embeds[0];
+}
+
+function tester(action) {
+
+	var TimeA;
+	var TimeB;
+	var compileTime;
+	var r;
+	var prop;
+	var s = m.GetVariable("s")+'';
+	var e = m.GetVariable("e")+'';
+	var f = m.GetVariable("f")+'';
+	var p = m.GetVariable("p")+'';
+
+	f = f.replace(InternetExplorer ? (/[^gim]/i) : (/[^gi]/i), "");
+
+	if (e != old_e || f != old_f) {
+		TimeA = new Date();
+		re = new RegExp(e, f);
+		TimeB = new Date();
+		compileTime = TimeB.getTime()-TimeA.getTime();
+		old_e = e;
+		old_f = f;
+	} else {
+		compileTime = 0;
+	}
+	
+	r = '';
+	r += 'Compile time: '+compileTime+'ms';
+
+
+	if (action == "test") {
+		TimeA = new Date();
+		var t = re.test(s);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\ntest(string) = '+(t ? 'true' : 'false');
+
+	} else if (action == "exec") {
+		TimeA = new Date();
+		var ra = re.exec(s);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\nexec(string): '+(ra ? 'true' : 'false');
+		if (ra) {
+			r += '\n   index = '+ ra.index;
+			r += '\n   input = '+ ra.input;
+			for (var i=0; i<ra.length; i++) {
+				r += '\n   ['+i+'] = '+ ra[i];
+			}
+		}
+
+	} else if (action == "String.match") {
+		TimeA = new Date();
+		var ra = s.match(re);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\nString.match(expression): '+(ra ? 'true' : 'false');
+	
+		if (ra) {
+			for (var i=0; i<ra.length; i++) {
+				r += '\n   ['+i+'] = '+ ra[i];
+			}
+		}
+	
+	} else if (action == "String.replace") {
+		TimeA = new Date();
+		var rs = s.replace(re, p);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\nString.replace(expression, parameter) =\n'+ rs;
+
+	} else if (action == "String.search") {
+		TimeA = new Date();
+		var ri = s.search(re);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\nString.search(expression) = '+ ri;
+
+	} else if (action == "String.split") {
+		TimeA = new Date();
+		var ra = s.split(re);
+		TimeB = new Date();
+		r += '\nAction time: '+(TimeB.getTime()-TimeA.getTime())+'ms';
+		r += '\nString.split(expression):';
+		if (ra) {
+			for (var i=0; i<ra.length; i++) {
+				r += '\n   ['+i+'] = '+ ra[i];
+			}
+		}
+
+	}
+
+	prop = '';
+	prop +=   're.global = ' + (re.global ? 'true' : 'false');
+	prop += '\nre.ignoreCase = ' + (re.ignoreCase ? 'true' : 'false');
+	prop += '\nre.lastIndex = ' + re.lastIndex;
+	prop += '\nre.multiline = ' + (re.multiline ? 'true' : 'false');
+	prop += '\nre.source = ' + re.source;
+	prop += '\nRegExp.lastMatch = ' + RegExp.lastMatch;
+	prop += '\nRegExp.lastParen = ' + RegExp.lastParen;
+	prop += '\nRegExp.leftContext = ' + RegExp.leftContext;
+	prop += '\nRegExp.rightContext = ' + RegExp.rightContext;
+	for (var i=1; i<10; i++) {
+		prop += '\nRegExp.$'+i+' = '+ RegExp["$"+i];
+	}
+
+	m.SetVariable("br", r);
+	m.SetVariable("bprop", prop);
+}
+
+function mov_DoFSCommand(cmd, arg){
+	cmd += ''; arg += '';
+	if (!m) InitObjects();
+	if (waitForOK){
+		if (cmd=="OK") waitForOK = false;
+	} else {
+		switch (cmd) {
+		case "GO":
+			tester(arg);
+			break;
+		}
+	}
+}
+//-->
+</SCRIPT>
+
+<body bgcolor="#808080">
+	<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" CODEBASE="http://active.macromedia.com/flash2/cabs/swflash.cab#version=5,0,0,0""
+	ID="mov" WIDTH=100% HEIGHT=100% >
+	<PARAM NAME="movie" VALUE="RegExp.swf">
+	<PARAM NAME="play" VALUE="false">
+	<PARAM NAME="quality" VALUE="high">
+	<PARAM NAME="menu" VALUE="false">
+	<EMBED name="mov" SRC="RegExp.swf" swLiveConnect=TRUE WIDTH=100% HEIGHT=100% LOOP=false QUALITY=high MENU=false TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+	</EMBED>
+	</OBJECT>
+</body>
+</html>

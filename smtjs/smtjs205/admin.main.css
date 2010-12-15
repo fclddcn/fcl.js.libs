@@ -1,0 +1,162 @@
+*{font-family:arial}
+body,html{margin:0;padding:0}
+div.inputtitle{
+		padding-top:10px;
+		font-size:18px;
+		width:1002px;
+		background:#eee
+}
+p.title1{
+		text-align:center;font-size:22px;font-weight:bold
+}
+p.title2{
+		text-align:center;font-size:14px;font-weight:bold
+}
+*{font-size:12px}
+*.page{
+		width:1002px;
+		background-color:#fff;
+}
+img{border:0}
+div.centerdiv{text-align:center;}
+#leftlist div{padding:3px;text-align:center}
+*.div_title{
+		padding:3px;
+		color:#000;
+		background:#369;
+		background:url(/resources/images/title2.gif)
+}
+div.div_title1{
+		padding:3px;
+		color:#000;
+		padding-left:10px;
+		background:url(/resources/images/title1.gif)
+}
+div.div_titlesub{
+		background:#ddd;
+		padding-left:10px;
+}
+table.sub{
+		width:354px;
+		table-layout:fixed
+}
+table.sub td{
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space:nowrap;
+}
+table.sub2{
+		width:354px;
+}
+table.sub th{
+		background:#ddd;
+}
+table.sub td{
+		padding:3px;
+}
+div.navigationbtns img{  width:162px}
+form{margin:0}
+*{Font-Size:12Px;font-family:宋体}
+#m_tblInput td{
+		padding:15px 5px;
+}
+#m_tblInput td.b{
+		font-weight:bold;
+		background:#ddd;
+		text-align:center;
+}
+#imgtable th{
+		border-left:1px solid;
+		font-weight:bold;
+		text-align:center;
+		border:1px solid;
+		border-width:1px 0 1px 0;
+}
+#imgtable td{
+		border-left:1px solid;
+		text-align:center;
+		border:1px solid;
+		border-width:0 0 1px 0;
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+}
+#m_tblInput td{
+		padding:5px 5px;
+		text-align:left;
+}
+#m_tblInput td.b{
+		font-weight:bold;
+		background:#ddd;
+		text-align:center;
+}
+#imgtable th{
+		border-left:1px solid;
+		font-weight:bold;
+		text-align:center;
+		border:1px solid;
+		border-width:1px 0 1px 0;
+}
+#imgtable td{
+		border-left:1px solid;
+		text-align:center;
+		border:1px solid;
+		border-width:0 0 1px 0;
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+}
+select,input,textarea{vertical-align:bottom;padding:0}
+html,body{height:100%;margin:0px}
+td.menubody a{
+		text-decoration:none;
+		color:#009;
+		white-space:nowrap;
+		display:block;
+		background-color:buttonface;
+		padding:0px 10px
+}
+div.menu {
+		display:none;
+		position:absolute;
+		border:2px outset;
+		background-color:buttonface
+}
+table,input,textarea,div {font-size:12px}
+table.TBL_ICO img{width:32px;height:32px;border:none;margin:9px 0 3px 0}
+table.TBL_ICO a{color:#fff;text-decoration:none;}
+table.TBL_ICO td{text-align:center;width:100px}
+body{border:1px red}
+/*列表表格*/
+table.list{border-collapse:collapse;border:0px solid #000;}
+table.list th,table.list td{padding:3px;border:1px solid #000;}
+table.list thead tr{background:#0080c0;color:#fff}
+table.list tbody th,table.list tbody td{font-weight:normal;}
+table.list tfoot td{border:none;background:#fff;text-align:right;padding:auto}
+/*表单表格*/
+table.form{margin:auto}
+table.form thead tr{background:#0080c0;color:#fff}
+table.form{border:0px solid #000}
+table.form tbody th,table.form tbody td{background:#ddd;padding:5px;border:none;font-weight:normal}
+table.form tbody td{text-align:left;white-space:nowrap}
+table.form tbody th{background:#ddd;width:100px;vertical-align:top;text-align:right;}
+table.form tbody th b{color:red;font-weight:normal}
+table.form tfoot td,table.form tfoot th,table.form thead td,table.form thead th{
+		text-align:center;border:none;padding:5px;
+}
+table.form tfoot td,table.form tfoot th{
+		text-align:center;border:none;padding:5px;background:#ddd;
+}
+em.forminfo{
+		color:#ccc
+}
+table.innerTable{
+		padding:0;margin:0;
+		border-collapse:collapse;
+}
+table.innerTable td{
+		border:none;
+		padding:0;margin:0
+}
+input.wide,textarea.wide{width:98%}
+input.full,textarea.full{width:98%}

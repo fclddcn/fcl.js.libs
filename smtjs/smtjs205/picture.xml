@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<view>
+	<!--列表-->
+	<div style="margin:20px" nav="admin.picture.showlist">
+    <form method="get">
+			<holdvars fields="nav" auto="3"/>
+			<table border="1" width="100%" cellspacing="0" class="list" onmouseover="" extType="PowerTable">
+				<thead><tr><td width="10"></td><td>楼盘</td><td>类型</td><td>说明</td><td></td></tr></thead>
+				<tbody>
+				<lister id="lst" repeatColors=",#eeeeee" pagesize="25">
+					<column cols="1">
+						<tr bgcolor="{$bgcolor}" class="listrow">
+							<td><input type="checkbox" name="id[]" value="{$id}"/></td>
+							<td>{$estateName}</td><td>{$picUsage}</td><td>{$dscr}</td>
+							<td align="center"><a href='pic_upload/{$fileNameSvr}' onclick="return popupA(this)">预览</a></td>
+						</tr>
+					</column>
+				</lister>
+				</tbody>
+				<tfoot id="sheetFoot"><tr>
+          <td colspan="5" style="">
+						<subview srcname="admin/picture" srcnav="admin.picture.searchform"/>
+            {@_pagelinks} 第{@_page}/{@_pages}页 共{@_total}条
+						<input value="添加" type="button" class="addBtn" postnav="admin.picture.add"/>
+						<input value="修改" type="button" class="editBtn" postnav="admin.picture.edit"/>
+						<input value="删除" type="button" class="delBtn" postnav="admin.picture.delete"/>
+          </td>
+				</tr></tfoot>
+			</table>
+    </form>
+	</div>
+	<!--列表-end-->
+	<!--搜索表单-->
+	<table id="frmSearch" border="0" class="form searchform" auto="3" 
+				 style="position:absolute;left:20px" align="left" nav="admin.picture.searchform">
+		<thead><tr><th colspan="4">搜索</th></tr></thead>
+		<tr><th>楼盘</th><td>
+				<input name="estateName" value="{@estateName}" style="width:400px" extType="Suggest"
+							 onchange="$('#estateId').attr('value','');"
+							 autoComplete="off"
+							 oninput="this.url='?nav=admin.estate.namelist&amp;keyword='+this.value"
+							 onhit="$('#estateId').val(arguments[0].id)"/>
+				<input type="hidden" name="estateId" id="estateId" value="{@estateId}"/>
+		</td></tr>
+		<tbody style="display:none" class="hide">
+		<tr><th>ID</th><td>
+				<input name="id" value="{@id}" style="width:400px"/>
+		</td></tr>
+		<tr><th>类别</th><td>
+				<select name="picUsage">
+					<option></option>
+					<lister auto="3" src="query:select param1,value from basedata where typeid=2 order by sortOrder" selection="{$param1}:{@picUsage}">
+						<column>
+							<option selected="{$selected}" value="{$param1}">{$value}</option>
+						</column>
+					</lister>
+				</select>
+		</td></tr>
+		<tr><th>说明</th><td>
+				<input name="dscr" value="{@dscr}" style="width:400px"/>
+		</td></tr>
+		</tbody>
+		<tfoot><tr><th colspan="4"><input type="submit" value="搜索"/></th></tr></tfoot>
+	</table>
+	<!--搜索表单-end-->
+	<!--表单-->
+	<div nav="admin.picture.(add,edit)" style="margin:20px">
+		<form method="post" enctype="multipart/form-data">
+		<holdvars fields="id,typeId" auto="3"/>
+		<table border="1" width="550" class="form" id="tblForm" auto="3">
+		<thead>
+			<tr nav="admin.picture.add"><th align="center" colspan="2">添加 - 图片</th></tr>
+			<tr nav="admin.picture.edit"><th align="center" colspan="2">修改 - 图片</th></tr>
+		</thead>
+		<tr><th>类别</th><td>
+				<select name="picUsage" >
+					<lister auto="3" src="query:select param1,value from basedata where typeid=2 order by sortOrder" selection="{$param1}:{@picUsage}" default="0">
+							<column>
+								<option selected="{$selected}" value="{$param1}">{$value}</option>
+							</column>
+						</lister>
+				</select>
+		</td></tr>
+		<tr><th>楼盘</th><td>
+		<input name="estateName" value="{@estateName}" size="60" extType="Suggest"
+					 onchange="$('#estateId').attr('value','');"
+					 autoComplete="off"
+					 oninput="this.url='?nav=admin.estate.namelist&amp;keyword='+this.value"
+					 onhit="estate.onSeleEstate(arguments[0])"/>
+		<input id="estateId" name="estateId" value="{@estateId}" type="hidden" chkType="Require" chkMsg="楼盘名称没有匹配"/>
+		</td></tr>
+		<tr><th>文件</th><td><input name="file" type="file" size="50"/></td></tr>
+		<tr><th>说明</th><td><textarea name="dscr" rows="5" style="width:98%">{@dscr}</textarea></td></tr>
+		<tfoot>
+			<tr><td align="center" colspan="2">
+				<input type="submit" value="提交" nav="admin.picture.add" onclick="$f(this).submit('?nav=admin.picture.insert')"/>
+				<input type="submit" value="提交" nav="admin.picture.edit" onclick="$f(this).submit('?nav=admin.picture.update')"/>
+				<input type="button" value="取消" onclick="history.go(-1);"/>
+			</td></tr>
+		</tfoot>
+		</table>
+		</form>
+		<script src="js_ddfw/admin.estate.js" charset="utf-8"></script>
+	</div>
+	<!--表单-end-->
+	<!--弹出式图片选择框-->
+	<div nav="admin.picture.(ajaxList,ajaxBuildingList)" id="divPicList" >
+		<div class="dialog-cover"></div>
+		<div class="dialog">
+		<table style="background:#CCC;width:900px;border:1px solid #555;margin:auto" cellpadding="5" cellspacing="1">
+			<tr><th bgcolor="#009900" style="color:#fff" nav="admin.picture.ajaxBuildingList" colspan="5">图片选择</th></tr>
+			<tr><th bgcolor="#009900" style="color:#fff" nav="admin.picture.ajaxList" colspan="5">图片选择</th></tr>
+			<tr bgcolor="#ffff99">
+				<td width="1"></td>
+				<td nav="admin.picture.ajaxBuildingList">楼盘图片说明</td>
+				<td align="left">图片说明</td>
+				<td>原文件名</td>
+				<td>类型</td>
+			</tr>
+			<lister id="lst" repeatColors="#eeeeee,#dddddd" pagesize="10">
+				<column>
+					<tr bgcolor="{$bgcolor}">
+						<td width="1" nav="admin.picture.ajaxList"><input type="checkbox" name="id" value="{$id}"/></td>
+						<td width="1" nav="admin.picture.ajaxBuildingList"><input type="checkbox" name="id" value="{$reXrefPicId}"/></td>
+						<td nav="admin.picture.ajaxBuildingList">{$dscrBuilding}</td>
+						<td align="left">{$dscr}</td>
+						<td>{$fileName}</td><td>{$picUsage}</td>
+					</tr>
+				</column>
+			</lister>
+			<tfoot id="sheetFoot">
+				<tr>
+					<td colspan="4">
+						<input name="dscr" value="{@dscr}"/><input type="button" value="按说明搜索" page="{@_page}"/>
+						{@_pagelinks} 第{@_page}/{@_pages}页 共{@_total}条
+						<input type="button" value="确定"/>
+						<input type="button" value="取消"/>
+					</td>
+			</tr></tfoot>
+		</table>
+		</div>
+	</div>
+	<!--弹出式图片选择框－end-->
+</view>
